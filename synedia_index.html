@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>시네디아 컴퍼니 | Synedia Company</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Montserrat:wght@400;600;700;800;900&display=swap');
+:root{
+  --purple:#3D00C8;
+  --purple-lt:#6B3FD4;
+  --lavender:#EDE7FF;
+  --lavender-dk:#C4B5FD;
+  --white:#FFFFFF;
+  --off:#F5F3FF;
+  --dark:#1A1A2E;
+  --gray:#666680;
+  --gray-lt:#DDD8F5;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--white);color:var(--dark);overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:64px;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--gray-lt);box-shadow:0 2px 16px rgba(61,0,200,0.06);}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-logo-mark{width:32px;height:32px;background:var(--purple);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:900;color:#fff;}
+.nav-logo-text span:first-child{display:block;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:800;color:var(--purple);}
+.nav-logo-text span:last-child{display:block;font-size:8px;color:var(--gray);letter-spacing:1.5px;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--gray);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--purple);}
+.nav-cta{background:var(--purple);color:#fff;padding:9px 20px;border-radius:24px;font-size:13px;font-weight:700;text-decoration:none;}
+.nav-cta:hover{background:var(--purple-lt);}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--purple);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--gray-lt);padding:20px 5%;z-index:99;flex-direction:column;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-size:15px;font-weight:500;color:var(--gray);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--gray-lt);}
+.mobile-menu a:last-child{border-bottom:none;color:var(--purple);font-weight:700;}
+
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 8% 80px;position:relative;overflow:hidden;background:var(--white);}
+.hero-circle1{position:absolute;top:-120px;right:-120px;width:500px;height:500px;background:var(--lavender);border-radius:50%;opacity:0.5;pointer-events:none;}
+.hero-circle2{position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;background:var(--lavender);border-radius:50%;opacity:0.3;pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--lavender);border:1px solid var(--lavender-dk);color:var(--purple);font-size:12px;font-weight:700;padding:7px 16px;border-radius:24px;margin-bottom:32px;position:relative;z-index:1;}
+.hero-badge-dot{width:7px;height:7px;background:#FF6B35;border-radius:50%;animation:pulse 1.5s infinite;}
+.hero-title{font-size:clamp(36px,5vw,72px);font-weight:900;line-height:1.1;margin-bottom:28px;position:relative;z-index:1;}
+.hero-title .line1{display:block;color:var(--dark);margin-bottom:14px;}
+.hero-title .line2{display:block;color:var(--purple);}
+.hero-title .line3{display:block;color:var(--dark);font-size:0.65em;}
+.hero-sub{font-size:16px;line-height:1.9;color:var(--gray);margin-bottom:36px;max-width:580px;position:relative;z-index:1;}
+.hero-sub strong{color:var(--dark);}
+.hero-stats{display:flex;gap:40px;margin-bottom:44px;flex-wrap:wrap;position:relative;z-index:1;}
+.hero-stat-num{font-family:'Montserrat',sans-serif;font-size:30px;font-weight:900;color:var(--purple);}
+.hero-stat-label{font-size:11px;color:var(--gray);margin-top:3px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;position:relative;z-index:1;}
+.btn-primary{background:var(--purple);color:#fff;padding:14px 30px;border-radius:30px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 6px 24px rgba(61,0,200,0.25);}
+.btn-primary:hover{background:var(--purple-lt);}
+.btn-outline{background:transparent;color:var(--purple);padding:14px 30px;border-radius:30px;font-size:14px;font-weight:600;text-decoration:none;border:2px solid var(--lavender-dk);}
+.btn-outline:hover{background:var(--lavender);border-color:var(--purple);}
+
+section{padding:90px 8%;}
+.sec-eyebrow{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;background:linear-gradient(90deg,#E63946,#FF6B35,#FFB300);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:14px;}
+.sec-title{font-size:clamp(26px,3.5vw,44px);font-weight:900;color:var(--dark);line-height:1.2;margin-bottom:14px;}
+.sec-title em{background:linear-gradient(90deg,#E63946,#FF6B35,#FFB300);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal;}
+.sec-sub{font-size:15px;color:var(--gray);line-height:1.8;max-width:560px;}
+.sec-header{margin-bottom:52px;}
+.divider{width:52px;height:4px;background:linear-gradient(90deg,#E63946,#FF6B35,#FFB300);border-radius:2px;margin:20px 0;}
+
+#pain{background:var(--off);}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.pain-card{background:var(--white);border:1px solid var(--gray-lt);border-radius:16px;padding:30px 26px;position:relative;overflow:hidden;transition:all .22s;box-shadow:0 2px 12px rgba(61,0,200,0.05);}
+.pain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#E63946,#FF6B35,#FFB300);}
+.pain-card:hover{border-color:var(--lavender-dk);transform:translateY(-4px);box-shadow:0 12px 36px rgba(61,0,200,0.1);}
+.pain-num{font-family:'Montserrat',sans-serif;font-size:40px;font-weight:900;background:linear-gradient(90deg,#E63946,#FF6B35,#FFB300);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:14px;line-height:1;}
+.pain-title{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:8px;}
+.pain-desc{font-size:13px;color:var(--gray);line-height:1.8;}
+.pain-bottom{margin-top:40px;background:var(--lavender);border:1px solid var(--lavender-dk);border-radius:14px;padding:28px 32px;text-align:center;}
+.pain-bottom-title{font-size:18px;font-weight:800;background:linear-gradient(90deg,#E63946,#FF6B35,#FFB300);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px;}
+.pain-bottom-desc{font-size:13.5px;color:var(--dark);line-height:1.8;}
+.pain-bottom-desc strong{color:var(--purple);}
+
+#service{background:var(--white);}
+.service-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.service-card{background:var(--white);border:1px solid var(--gray-lt);border-radius:14px;padding:28px 24px;transition:all .22s;box-shadow:0 2px 10px rgba(61,0,200,0.04);}
+.service-card:hover{border-color:var(--lavender-dk);box-shadow:0 8px 28px rgba(61,0,200,0.1);transform:translateY(-3px);}
+.service-icon-wrap{width:48px;height:48px;background:linear-gradient(135deg,rgba(230,57,70,0.1),rgba(255,107,53,0.1));border:1px solid rgba(255,107,53,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;}
+.service-title{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:8px;}
+.service-desc{font-size:13px;color:var(--gray);line-height:1.8;}
+.service-tag{display:inline-block;background:linear-gradient(90deg,#E63946,#FF6B35,#FFB300);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:10px;margin-top:12px;}
+.service-wide{grid-column:1/-1;background:var(--lavender);border:1px solid var(--lavender-dk);display:flex;align-items:center;gap:28px;}
+.service-wide .service-icon-wrap{background:var(--purple);width:56px;height:56px;font-size:26px;flex-shrink:0;}
+
+#benefit{background:var(--off);}
+.benefit-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.benefit-items{display:flex;flex-direction:column;gap:22px;margin-top:36px;}
+.benefit-item{display:flex;gap:18px;align-items:flex-start;}
+.benefit-icon{width:44px;height:44px;background:linear-gradient(135deg,#E63946,#FF6B35);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.benefit-title{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:5px;}
+.benefit-desc{font-size:13px;color:var(--gray);line-height:1.7;}
+.benefit-right{background:var(--white);border:1px solid var(--gray-lt);border-radius:18px;padding:32px;box-shadow:0 4px 20px rgba(61,0,200,0.06);}
+.benefit-stat-title{font-size:11px;color:var(--gray);margin-bottom:24px;font-family:'Montserrat',sans-serif;letter-spacing:1px;}
+.benefit-stats{display:flex;flex-direction:column;gap:18px;}
+.benefit-stat-label{font-size:12px;color:var(--gray);margin-bottom:6px;display:flex;justify-content:space-between;}
+.benefit-stat-bar{height:6px;background:var(--lavender);border-radius:3px;overflow:hidden;}
+.benefit-stat-fill{height:100%;border-radius:3px;background:var(--purple);}
+.benefit-collab{margin-top:28px;padding-top:22px;border-top:1px solid var(--gray-lt);}
+.benefit-collab-title{font-size:11px;color:var(--gray);margin-bottom:10px;font-family:'Montserrat',sans-serif;letter-spacing:1px;}
+.benefit-collab-item{background:var(--lavender);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--dark);margin-bottom:8px;}
+.benefit-collab-item strong{color:var(--purple);}
+
+#process{background:var(--white);}
+.process-flow{display:grid;grid-template-columns:repeat(4,1fr);position:relative;gap:0;}
+.process-flow::after{content:'';position:absolute;top:36px;left:12%;width:76%;height:2px;background:var(--lavender);z-index:0;}
+.process-item{text-align:center;position:relative;z-index:1;padding:0 10px;}
+.process-circle{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#E63946,#FF6B35,#FFB300);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Montserrat',sans-serif;font-size:20px;font-weight:900;color:#fff;box-shadow:0 6px 20px rgba(230,57,70,0.3);}
+.process-title{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:9px;}
+.process-desc{font-size:11.5px;color:var(--gray);line-height:1.7;}
+
+#why{background:var(--off);}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.why-card{background:var(--white);border:1px solid var(--gray-lt);border-radius:14px;padding:26px 22px;transition:all .22s;box-shadow:0 2px 10px rgba(61,0,200,0.04);}
+.why-card:hover{border-color:var(--lavender-dk);transform:translateY(-3px);}
+.why-icon{font-size:26px;margin-bottom:12px;}
+.why-title{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:8px;}
+.why-desc{font-size:12.5px;color:var(--gray);line-height:1.8;}
+.why-highlight{grid-column:1/-1;background:var(--purple);border-radius:14px;padding:32px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.why-hl-title{font-size:20px;font-weight:900;color:#fff;margin-bottom:8px;}
+.why-hl-desc{font-size:13.5px;color:rgba(255,255,255,0.8);line-height:1.8;}
+.why-hl-btn{background:linear-gradient(90deg,#E63946,#FF6B35,#FFB300);color:#fff;padding:12px 26px;border-radius:24px;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;}
+
+#contact{background:var(--purple);padding:0;}
+.contact-top{background:var(--white);padding:80px 8% 60px;position:relative;overflow:hidden;}
+.contact-top::before{content:'';position:absolute;top:-60px;left:-60px;width:280px;height:280px;background:var(--lavender);border-radius:50%;opacity:0.6;z-index:0;}
+.contact-top-inner{position:relative;z-index:1;text-align:center;max-width:680px;margin:0 auto;}
+.contact-title{font-size:clamp(26px,3.5vw,44px);font-weight:900;color:var(--dark);margin-bottom:14px;line-height:1.3;}
+.contact-title em{color:var(--purple);font-style:normal;}
+.contact-sub{font-size:14px;color:var(--gray);line-height:1.9;margin-bottom:44px;}
+.contact-sub strong{color:var(--purple);}
+.contact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:680px;margin:0 auto;}
+.contact-card{background:var(--white);border:1px solid var(--gray-lt);border-radius:14px;padding:26px 18px;text-align:center;transition:all .2s;box-shadow:0 2px 10px rgba(61,0,200,0.05);}
+.contact-card:hover{border-color:var(--lavender-dk);transform:translateY(-3px);}
+.contact-card-icon{font-size:26px;margin-bottom:10px;}
+.contact-card-label{font-size:10px;color:var(--gray);margin-bottom:7px;font-family:'Montserrat',sans-serif;letter-spacing:1px;}
+.contact-card-val{font-size:13px;color:var(--dark);font-weight:600;line-height:1.6;}
+.contact-bottom{background:var(--purple);padding:40px 8%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.contact-bottom-logo{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:900;color:#fff;}
+.contact-bottom-tagline{font-size:13px;color:rgba(255,255,255,0.7);}
+footer{background:#2A0090;padding:18px 8%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.footer-logo{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;color:#fff;}
+.footer-right{font-size:11px;color:rgba(255,255,255,0.4);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.6;transform:scale(0.85);}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:.1s;}
+.reveal-delay-2{transition-delay:.2s;}
+.reveal-delay-3{transition-delay:.3s;}
+.reveal-delay-4{transition-delay:.4s;}
+.reveal-delay-5{transition-delay:.5s;}
+
+@media(max-width:900px){
+  .nav-links,.nav-cta{display:none;}
+  .nav-toggle{display:flex;}
+  #hero{padding:110px 6% 70px;}
+  .pain-grid{grid-template-columns:1fr 1fr;}
+  .service-grid{grid-template-columns:1fr;}
+  .service-wide{flex-direction:column;gap:14px;}
+  .benefit-grid{grid-template-columns:1fr;}
+  .process-flow{grid-template-columns:1fr 1fr;gap:28px;}
+  .process-flow::after{display:none;}
+  .why-grid{grid-template-columns:1fr 1fr;}
+  .contact-cards{grid-template-columns:1fr;}
+  section{padding:64px 6%;}
+}
+@media(max-width:600px){
+  nav{height:58px;}
+  .mobile-menu{top:58px;}
+  #hero{padding:96px 4% 60px;}
+  .hero-btns{flex-direction:column;}
+  .btn-primary,.btn-outline{text-align:center;}
+  .pain-grid{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr;}
+  .why-highlight{flex-direction:column;}
+  .contact-bottom{flex-direction:column;text-align:center;}
+  section{padding:52px 4%;}
+  footer{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <img src="data:image/png;base64,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" alt="Synedia Company Logo" style="height:40px;width:auto;object-fit:contain;">
+    <div class="nav-logo-text">
+      <span>SYNEDIA COMPANY</span>
+      <span>SENSIBLE COLLAB &amp; CONTENT HUB</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#pain">고민</a></li>
+    <li><a href="#service">서비스</a></li>
+    <li><a href="#benefit">기대효과</a></li>
+    <li><a href="#process">프로세스</a></li>
+    <li><a href="#why">왜 시네디아?</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">공급사 문의</a>
+  <div class="nav-toggle" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#pain" onclick="closeMenu()">고민</a>
+  <a href="#service" onclick="closeMenu()">서비스</a>
+  <a href="#benefit" onclick="closeMenu()">기대효과</a>
+  <a href="#process" onclick="closeMenu()">프로세스</a>
+  <a href="#why" onclick="closeMenu()">왜 시네디아?</a>
+  <a href="#contact" onclick="closeMenu()">공급사 문의</a>
+</div>
+
+<section id="hero">
+  <div class="hero-circle1"></div>
+  <div class="hero-circle2"></div>
+  <div class="hero-badge"><div class="hero-badge-dot"></div>공급사·제조사 전용 공동구매 플랫폼</div>
+  <h1 class="hero-title">
+    <span class="line1">당신의 제품을</span>
+    <span class="line2">인플루언서와 연결합니다</span>
+  </h1>
+  <p class="hero-sub">시장분석부터 인플루언서 매칭, 공동구매 운영, 데이터 리포팅까지.<br><strong>16년차 이벤트·BTL 전문가 팀이 운영하는 원스톱 공동구매 솔루션.</strong></p>
+  <div class="hero-stats">
+    <div><div class="hero-stat-num">28조</div><div class="hero-stat-label">2025 인플루언서 커머스 시장 규모</div></div>
+    <div><div class="hero-stat-num">71.4%</div><div class="hero-stat-label">인플루언서 영향 구매 비중</div></div>
+    <div><div class="hero-stat-num">16년+</div><div class="hero-stat-label">이벤트·BTL 마케팅 경력</div></div>
+  </div>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-primary">공급사 문의하기</a>
+    <a href="#service" class="btn-outline">서비스 알아보기</a>
+  </div>
+</section>
+
+<section id="pain">
+  <div class="sec-header">
+    <p class="sec-eyebrow reveal">PAIN POINT</p>
+    <h2 class="sec-title reveal">혹시 이런 고민, <em>있으신가요?</em></h2>
+    <div class="divider reveal"></div>
+    <p class="sec-sub reveal">많은 공급사·제조사가 겪는 공통적인 어려움입니다. 시네디아가 해결해드립니다.</p>
+  </div>
+  <div class="pain-grid">
+    <div class="pain-card reveal reveal-delay-1">
+      <div class="pain-num">01</div>
+      <div class="pain-title">광고비는 많은데 효과가 없어요</div>
+      <div class="pain-desc">CPC 광고로는 신뢰가 쌓이지 않고 비용 대비 전환율이 낮습니다. 진짜 구매로 이어지는 마케팅이 필요합니다.</div>
+    </div>
+    <div class="pain-card reveal reveal-delay-2">
+      <div class="pain-num">02</div>
+      <div class="pain-title">인플루언서 연결을 모르겠어요</div>
+      <div class="pain-desc">어떤 인플루언서가 우리 제품에 맞는지, 어떻게 계약하고 진행하는지 전혀 모릅니다.</div>
+    </div>
+    <div class="pain-card reveal reveal-delay-3">
+      <div class="pain-num">03</div>
+      <div class="pain-title">SNS 채널이 없거나 운영이 어려워요</div>
+      <div class="pain-desc">브랜드 SNS 계정이 없어도 됩니다. 인플루언서 채널을 통해 자연스럽게 노출하고 리뷰를 쌓을 수 있습니다.</div>
+    </div>
+  </div>
+  <div class="pain-bottom reveal">
+    <div class="pain-bottom-title">✅ 시네디아가 이 모든 걸 해결합니다</div>
+    <div class="pain-bottom-desc">공동구매는 <strong>판매와 광고가 동시에 일어나는 구조</strong>입니다.<br>적은 비용으로 큰 효과를 얻을 수 있는 가장 매력적인 마케팅 채널입니다.</div>
+  </div>
+</section>
+
+<section id="service">
+  <div class="sec-header">
+    <p class="sec-eyebrow reveal">SERVICE</p>
+    <h2 class="sec-title reveal">공급사를 위한 <em>원스톱 솔루션</em></h2>
+    <div class="divider reveal"></div>
+    <p class="sec-sub reveal">기획부터 배송까지, 시네디아가 전 과정을 함께합니다.</p>
+  </div>
+  <div class="service-grid">
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon-wrap">🛒</div>
+      <div class="service-title">공동구매 기획 및 운영</div>
+      <div class="service-desc">시장분석 기반 상품 셀렉션과 가격협상부터 스케줄 관리, 재고·물류 조율까지 전담합니다.</div>
+      <span class="service-tag">Core Service</span>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon-wrap">🎯</div>
+      <div class="service-title">맞춤형 인플루언서 매칭</div>
+      <div class="service-desc">팔로워 특성에 맞는 마이크로·나노 인플루언서 큐레이션. AI + 전문 매니저가 최적의 파트너를 선정합니다.</div>
+      <span class="service-tag">AI + Human</span>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-icon-wrap">🎬</div>
+      <div class="service-title">콘텐츠 기획·제작·배포</div>
+      <div class="service-desc">인플루언서의 개성이 담긴 릴스, 피드 콘텐츠 기획부터 배포 지원. 별도 콘텐츠 제작 없이 진행 가능합니다.</div>
+      <span class="service-tag">Content</span>
+    </div>
+    <div class="service-card reveal reveal-delay-4">
+      <div class="service-icon-wrap">📊</div>
+      <div class="service-title">실시간 데이터 리포팅</div>
+      <div class="service-desc">공동구매 실적 대시보드 제공. 실시간 모니터링으로 즉각적인 전략 수정이 가능합니다.</div>
+      <span class="service-tag">Data Driven</span>
+    </div>
+    <div class="service-card service-wide reveal">
+      <div class="service-icon-wrap">🎪</div>
+      <div>
+        <div class="service-title">오프라인 프로모션 이벤트 <span style="font-size:12px;color:var(--gray);font-weight:400;">(별도 옵션)</span></div>
+        <div class="service-desc">온라인 공동구매뿐 아니라 오프라인 체험 이벤트, 현장 시연·체험 부스 운영, CS까지 전 과정을 시네디아가 일원화 진행. 현장 데이터 피드백을 디지털 캠페인에 반영해 시너지를 극대화합니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="benefit">
+  <div class="benefit-grid">
+    <div>
+      <p class="sec-eyebrow reveal">BENEFIT</p>
+      <h2 class="sec-title reveal">공급사가 얻는<br><em>4가지 기대효과</em></h2>
+      <div class="divider reveal"></div>
+      <div class="benefit-items">
+        <div class="benefit-item reveal reveal-delay-1">
+          <div class="benefit-icon">💰</div>
+          <div>
+            <div class="benefit-title">효율적인 광고비</div>
+            <div class="benefit-desc">공동구매는 판매와 광고가 동시에 일어나는 구조. CPC보다 훨씬 효율적인 광고비로 큰 효과를 냅니다.</div>
+          </div>
+        </div>
+        <div class="benefit-item reveal reveal-delay-2">
+          <div class="benefit-icon">🔒</div>
+          <div>
+            <div class="benefit-title">제품 가치의 보존</div>
+            <div class="benefit-desc">폐쇄몰 비밀 링크를 통한 기획성 판매로 기존 시장 가격을 그대로 유지하며 브랜드 이미지를 보호합니다.</div>
+          </div>
+        </div>
+        <div class="benefit-item reveal reveal-delay-3">
+          <div class="benefit-icon">📣</div>
+          <div>
+            <div class="benefit-title">SNS 활용 마케팅</div>
+            <div class="benefit-desc">SNS 계정이 없어도 됩니다. 인플루언서 채널을 통해 제품을 노출하고 자연스러운 리뷰를 쌓을 수 있습니다.</div>
+          </div>
+        </div>
+        <div class="benefit-item reveal reveal-delay-4">
+          <div class="benefit-icon">🚀</div>
+          <div>
+            <div class="benefit-title">새로운 판로 개척</div>
+            <div class="benefit-desc">자사몰, 오프라인 외에 SNS 기반의 셀러 유통망을 통해 새로운 소비자층에게 제품을 노출할 수 있습니다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="benefit-right reveal">
+      <div class="benefit-stat-title">시장 데이터</div>
+      <div class="benefit-stats">
+        <div>
+          <div class="benefit-stat-label"><span>인스타그램 구매 이용률</span><span style="color:var(--purple);font-weight:700;">21.3%</span></div>
+          <div class="benefit-stat-bar"><div class="benefit-stat-fill" style="width:21.3%"></div></div>
+        </div>
+        <div>
+          <div class="benefit-stat-label"><span>MZ세대 공동구매 참여율</span><span style="color:var(--purple);font-weight:700;">44%</span></div>
+          <div class="benefit-stat-bar"><div class="benefit-stat-fill" style="width:44%"></div></div>
+        </div>
+        <div>
+          <div class="benefit-stat-label"><span>인플루언서 영향 구매 비중</span><span style="color:var(--purple);font-weight:700;">71.4%</span></div>
+          <div class="benefit-stat-bar"><div class="benefit-stat-fill" style="width:71.4%"></div></div>
+        </div>
+        <div>
+          <div class="benefit-stat-label"><span>SNS 공동구매 경험 비율</span><span style="color:var(--purple);font-weight:700;">52.1%</span></div>
+          <div class="benefit-stat-bar"><div class="benefit-stat-fill" style="width:52.1%"></div></div>
+        </div>
+      </div>
+      <div class="benefit-collab">
+        <div class="benefit-collab-title">협업 방식</div>
+        <div class="benefit-collab-item">📦 <strong>위탁 판매</strong> / 선입고 / 수수료 구조 중 선택</div>
+        <div class="benefit-collab-item">📋 <strong>1회성 공구</strong> 또는 지속 진행 선택 가능</div>
+        <div class="benefit-collab-item">💬 <strong>카카오톡 채널</strong> / 구글 시트 실시간 집계</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="sec-header">
+    <p class="sec-eyebrow reveal">PROCESS</p>
+    <h2 class="sec-title reveal">공급사 운영 <em>4단계 프로세스</em></h2>
+    <div class="divider reveal"></div>
+    <p class="sec-sub reveal">복잡한 과정은 시네디아가 담당합니다. 공급사는 제품만 준비하면 됩니다.</p>
+  </div>
+  <div class="process-flow">
+    <div class="process-item reveal reveal-delay-1">
+      <div class="process-circle">01</div>
+      <div class="process-title">제품 확정 및 계약</div>
+      <div class="process-desc">제품 확정<br>시네디아 벤더사와<br>협의 및 계약</div>
+    </div>
+    <div class="process-item reveal reveal-delay-2">
+      <div class="process-circle">02</div>
+      <div class="process-title">판매 전략 수립</div>
+      <div class="process-desc">공동구매 제품 확인<br>판매전략 확정<br>상세페이지 준비</div>
+    </div>
+    <div class="process-item reveal reveal-delay-3">
+      <div class="process-circle">03</div>
+      <div class="process-title">조건 협의 및 매칭</div>
+      <div class="process-desc">인플루언서 선택<br>일정·수수료·공급가<br>확정</div>
+    </div>
+    <div class="process-item reveal reveal-delay-4">
+      <div class="process-circle">04</div>
+      <div class="process-title">생산·배송·완료</div>
+      <div class="process-desc">물류 부자재 입고<br>생산, 포장, 출하<br>소비자에게 배송</div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="sec-header">
+    <p class="sec-eyebrow reveal">WHY SYNEDIA</p>
+    <h2 class="sec-title reveal">왜 <em>시네디아</em>인가?</h2>
+    <div class="divider reveal"></div>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal reveal-delay-1">
+      <div class="why-icon">🏆</div>
+      <div class="why-title">이벤트 전문 기획 노하우</div>
+      <div class="why-desc">단순 중개가 아닌 시장·트랜드 분석 기반 스토리텔링으로 기획 단계부터 참여. 시즌별 인기상품 큐레이션 제안.</div>
+    </div>
+    <div class="why-card reveal reveal-delay-2">
+      <div class="why-icon">🤖</div>
+      <div class="why-title">AI·휴먼 하이브리드 매칭</div>
+      <div class="why-desc">전문 매니저의 검토와 과거 캠페인 데이터를 결합. 실시간 대시보드로 즉각적인 전략 수정 가능.</div>
+    </div>
+    <div class="why-card reveal reveal-delay-3">
+      <div class="why-icon">🛡️</div>
+      <div class="why-title">리스크 관리 &amp; 브랜드 보호</div>
+      <div class="why-desc">AI 수요 예측으로 재고·물류 리스크 사전 차단. 폐쇄형 공동구매 몰로 가격 노출 통제.</div>
+    </div>
+    <div class="why-card reveal reveal-delay-1">
+      <div class="why-icon">📈</div>
+      <div class="why-title">투명한 성과 리포팅</div>
+      <div class="why-desc">실시간 판매 집계와 고객 반응 데이터 제공. 리오더 및 재판매 연계까지 지원합니다.</div>
+    </div>
+    <div class="why-card reveal reveal-delay-2">
+      <div class="why-icon">🔗</div>
+      <div class="why-title">원스톱 운영 시스템</div>
+      <div class="why-desc">기획→매칭→콘텐츠→판매→정산까지 시네디아가 일원화 관리. 공급사는 제품에만 집중하면 됩니다.</div>
+    </div>
+    <div class="why-card reveal reveal-delay-3">
+      <div class="why-icon">🌐</div>
+      <div class="why-title">옴니채널 확장</div>
+      <div class="why-desc">온라인 공동구매 + 오프라인 체험 이벤트까지. 디지털·현장 데이터를 연결해 시너지를 극대화.</div>
+    </div>
+    <div class="why-highlight reveal">
+      <div>
+        <div class="why-hl-title">"최소한의 리스크! 최대의 효율성과!"</div>
+        <div class="why-hl-desc">시네디아 컴퍼니는 협업 중심의 디지털 정보 커넥션(HUB)을 통해<br>모든 참여 주체가 함께 성장하고, 새로운 시장 표준을 제시합니다.</div>
+      </div>
+      <a href="#contact" class="why-hl-btn">지금 문의하기 →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-top">
+    <div class="contact-top-inner">
+      <p class="sec-eyebrow reveal" style="text-align:center;">CONTACT</p>
+      <h2 class="contact-title reveal"><em>공동구매의 성공</em>은<br>시네디아 컴퍼니에서 시작됩니다.</h2>
+      <p class="contact-sub reveal">협업의 가치를 가장 잘 아는 파트너,<br>지속 가능한 성과로 보답하겠습니다.<br><strong>지금, 바로 Synedia Company와 함께하세요.</strong></p>
+      <div class="contact-cards">
+        <div class="contact-card reveal reveal-delay-1">
+          <div class="contact-card-icon">✉️</div>
+          <div class="contact-card-label">EMAIL</div>
+          <div class="contact-card-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="97e4eef9f2f3fef6d7e4eef9f2f3fef6f4f8fae7f6f9eeb9f4f8fa">[email&#160;protected]</a></div>
+        </div>
+        <div class="contact-card reveal reveal-delay-2">
+          <div class="contact-card-icon">📱</div>
+          <div class="contact-card-label">PHONE</div>
+          <div class="contact-card-val">070-8065-5986<br>010-9421-1843</div>
+        </div>
+        <div class="contact-card reveal reveal-delay-3">
+          <div class="contact-card-icon">📸</div>
+          <div class="contact-card-label">INSTAGRAM</div>
+          <div class="contact-card-val">@synedia_company</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-bottom">
+    <div class="contact-bottom-logo">SYNEDIA COMPANY</div>
+    <div class="contact-bottom-tagline">Sensible Collab &amp; Content Hub</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">SYNEDIA COMPANY</div>
+  <div class="footer-right">&copy; 2026 Synedia Company. All rights reserved.</div>
+</footer>
+
+<script>
+var reveals=document.querySelectorAll('.reveal');
+var observer=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});
+},{threshold:0.1});
+reveals.forEach(function(el){observer.observe(el);});
+function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('open');}
+function closeMenu(){document.getElementById('mobile-menu').classList.remove('open');}
+</script>
+</body>
+</html>
